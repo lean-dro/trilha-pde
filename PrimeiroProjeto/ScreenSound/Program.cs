@@ -36,10 +36,10 @@ void ExibirOpcoesDoMenu()
             ListarBandas();
             break;
         case 3:
-            Console.WriteLine("Você escolheu a opção:" + opcaoEscolhida);
+            AvaliarUmaBanda();
             break;
         case 4:
-            Console.WriteLine("Você escolheu a opção:" + opcaoEscolhida);
+            ObterMediaBanda();
             break;
         case -1:
             Console.WriteLine(@"
@@ -103,6 +103,51 @@ void ExibirTituloDaOpcao(string titulo)
     Console.WriteLine(titulo);
     Console.WriteLine(asteriscos+"\n");
 }
+void AvaliarUmaBanda()
+{
+    ExibirTituloDaOpcao("Avaliar banda");
+    Console.Write("Digite o nome da banda que deseja avaliar: ");
+    string bandaEscolhida = Console.ReadLine()!;
+    if (bandasRegistradas.ContainsKey(bandaEscolhida))
+    {
+        Console.Write($"Qual a nota que a banda {bandaEscolhida} merece? ");
+        int nota = int.Parse(Console.ReadLine()!);
+        bandasRegistradas[bandaEscolhida].Add(nota);
+        Console.WriteLine($"\nNota registrada com sucesso!\nBanda: {bandaEscolhida}\nNota: {nota}");
+        Console.Write("Voltando ao menu inicial ");
+        Carregamento(6);
+    }
+    else
+    {
+        Console.WriteLine($"A banda {bandaEscolhida} não foi encontrada");
+        Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+        Console.ReadKey();
+        Carregamento(3);
+    }
+}
+void ObterMediaBanda() {
+    ExibirTituloDaOpcao("Obter média de notas de uma banda");
+    Console.Write("Digite o nome da banda que deseja ver a média: ");
+    string nomeBanda = Console.ReadLine()!;
+
+    if (bandasRegistradas.ContainsKey(nomeBanda))
+    {
+        double mediaDaBanda = bandasRegistradas[nomeBanda].Average();
+        Console.WriteLine($"\nBanda: {nomeBanda}\nMédia: {mediaDaBanda}");
+        Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+        Console.ReadKey();
+        Carregamento(3);
+    }
+    else
+    {
+        Console.WriteLine($"A banda {nomeBanda} não foi encontrada");
+        Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+        Console.ReadKey();
+        Carregamento(5);
+    }
+
+}
+
 ExibirLogo();
 ExibirOpcoesDoMenu();
 

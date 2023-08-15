@@ -4,7 +4,7 @@
     public int Duracao { get; set; }
     public bool Disponivel { get; set; }
     public string DescricaoResumida => $"{Nome} - {Artista}";
-
+    public Genero genero { get; set; }
 
     public void ExibirFichaTecnica()
     {

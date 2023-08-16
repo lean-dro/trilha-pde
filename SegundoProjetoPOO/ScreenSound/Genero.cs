@@ -16,7 +16,7 @@
         Console.WriteLine($"Álbuns do gênero ({QuantidadeDeAlbuns}):");
         foreach (var album in albuns)
         {
-            Console.WriteLine($"- {album.Nome}");
+            Console.WriteLine($"- {album.Nome} - {album.DuracaoTotal} minutos");
         }
     }
 }

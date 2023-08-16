@@ -1,36 +1,31 @@
-﻿Musica musica1 = new Musica();
-musica1.Nome = "Levanta e Anda";
-musica1.Artista = "Emicida";
-musica1.Duracao = 400;
-musica1.Disponivel = true;
-
-Musica musica2 = new Musica();
-musica2.Nome = "Até Que Durou";
-musica2.Artista = "Péricles";
-musica2.Duracao = 500;
-musica2.Disponivel= false;
-
-Musica musica3 = new Musica();
-musica3.Nome = "AmarElo";
-musica3.Artista = "Emicida";
-musica3.Duracao = 750;
-musica3.Disponivel = true;
-
-Musica musica4 = new Musica();
-musica4.Nome = "A Ordem Natural das Coisas";
-musica4.Artista = "Emicida";
-musica4.Duracao = 500;
-musica4.Disponivel = true;
+﻿
+// Definindo os convidados
+Convidado leandro = new Convidado("Leandro");
+Convidado gabriel = new Convidado("Gabriel");
+Convidado kelvin = new Convidado("Kelvin");
 
 
-int somar(int a, int b)=>a+b; // exemplo de lambda
+// Definindo o Podcast
+Podcast profissaoDoFuturo = new Podcast(leandro, "Profissão do Futuro");
 
 
-Album albumFavorito = new Album();
+// Definindo o episódio
+Episodio episodio1 = new Episodio(1, "C# na Prática #1", 100, profissaoDoFuturo)
+{
+    Resumo = "Praticando a POO na prática utilizando a linguagem C#. Nesse episódio iremos ver sobre construtores!"
+};
 
-albumFavorito.Nome = "AmarElo";
-albumFavorito.AdicionarMusica(musica3);
-albumFavorito.AdicionarMusica(musica4);
+Episodio episodio2 = new Episodio(2, "C# na Prática #2", 120, profissaoDoFuturo)
+{
+    Resumo = "Praticando a POO na prática utilizando a linguagem C#. Nesse episódio iremos ver sobre ordenagem em Listas!"
+};
+// Atribuição dos convidados ao episódio
+episodio1.AdicionarConvidados(leandro);
+episodio1.AdicionarConvidados(gabriel);
+episodio1.AdicionarConvidados(kelvin);
 
-albumFavorito.ExibirMusicasDoAlbum();
+episodio2.AdicionarConvidados(leandro);
+episodio2.AdicionarConvidados(gabriel);
+episodio2.AdicionarConvidados(kelvin);
 
+profissaoDoFuturo.DetalhesPodcast();

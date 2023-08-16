@@ -17,6 +17,16 @@ Dictionary<string, Banda> bandasRegistradas = new();
 bandasRegistradas.Add("Racionais", racionais);
 bandasRegistradas.Add("Barões da Pisadinha", baroes);
 
+Dictionary<int, Menu> opcoes = new();
+
+opcoes.Add(1, new MenuRegistrarBanda());
+opcoes.Add(2, new MenuRegistrarAlbum());
+opcoes.Add(3, new MenuMostrarBandas());
+opcoes.Add(4, new MenuAvaliarBanda());
+opcoes.Add(5, new MenuExibirDetalhes());
+opcoes.Add(6, new MenuSair());
+
+
 void ExibirLogo()
 {
     Console.WriteLine(@"
@@ -45,41 +55,17 @@ void ExibirOpcoesDoMenu()
     string opcaoEscolhida = Console.ReadLine()!;
     int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
 
-    switch (opcaoEscolhidaNumerica)
+    if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
     {
-        case 1:
-            MenuRegistrarBanda menu1 = new MenuRegistrarBanda();
-            menu1.Registrar(bandasRegistradas);
+        Menu menu = opcoes[opcaoEscolhidaNumerica];
+        menu.Executar(bandasRegistradas);
+        if(opcaoEscolhidaNumerica > 0)
+        {
             ExibirOpcoesDoMenu();
-            break;
-        case 2:
-            MenuRegistrarAlbum menu2 = new MenuRegistrarAlbum();
-            menu2.Registrar(bandasRegistradas);
-            ExibirOpcoesDoMenu();
-            break;
-        case 3:
-            MenuMostrarBandas menu3 = new MenuMostrarBandas();
-            menu3.ExibirBandas(bandasRegistradas);
-            ExibirOpcoesDoMenu();
-            break;
-        case 4:
-            AvaliarBanda menu4 = new AvaliarBanda();
-            menu4.Executar(bandasRegistradas);
-            ExibirOpcoesDoMenu();
-            break;
-        case 5:
-            MenuExibirDetalhes menu5 = new MenuExibirDetalhes();
-            menu5.Executar(bandasRegistradas);
-            ExibirOpcoesDoMenu();
-            break;
-        case -1:
-            MenuSair menu6 = new MenuSair();
-            menu6.sair();
-            break;
-        default:
-            Console.WriteLine("Opção inválida");
-            break;
+        }
+    }else
+    {
+        Console.WriteLine("Opção inválida");
     }
 }
-
 ExibirOpcoesDoMenu();

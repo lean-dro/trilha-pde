@@ -6,7 +6,7 @@ internal class Musica
         Artista = artista;
         Nome = nome;
     }
-
+    
     public string Nome { get; }
     public Banda Artista { get; }
     public int Duracao { get; set; }
